@@ -1,0 +1,72 @@
+<%-include("./partials/header") %> <%-include("./partials/navbar") %>
+
+<div
+  class="
+    home-container
+    container
+    mt-4
+    animate__animated animate__fadeIn animate__slow 
+    
+
+  "
+  style="margin-bottom: 50px;"
+>
+  <% if (customers.length>0) { %>
+  <div class="row">
+    <h1 class="text-center">Customers List</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table
+        class="
+          customers-table
+          table table-dark table-striped table-bordered
+          border-dark
+          mt-4
+        "
+      >
+        <thead class="text-center fs-6">
+          <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Email ID</th>
+            <th>Balance</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody class="text-center fs-6">
+          <% customers.forEach((customer,index) => { %>
+          <tr>
+            <td class="fw-bold"><%=index +1%></td>
+            <td><%=customer.name%></td>
+            <td><%=customer.email%></td>
+            <td>
+              <span><i class="fas fa-rupee-sign"></i></span
+              ><%=(customer.currentBal).toLocaleString('en-IN')%>
+            </td>
+            <td>
+              <a
+                type="button"
+                class="btn btn-sm btn-secondary p-1 fw-bold"
+                href="/customers/<%=(customer.accNo).toString()%>"
+              >
+                More Details
+              </a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+     
+    </div>
+  </div>
+  <% }else{ %>
+  <div class="row">
+    <h1 class="text-center">There are no customers at the moment!</h1>
+  </div>
+  <%}%>
+</div>
+
+<%-include("./partials/footer") %>
+<%-include("./partials/AddMem") %>
+
